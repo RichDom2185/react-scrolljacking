@@ -1,38 +1,92 @@
-.App {
+:root {
+  --sans-font: "Roboto Flex", sans-serif;
+
+  --white: #fff;
+  --light-gray: #f7f7f7;
+}
+
+body {
+  font-family: var(--sans-font);
+}
+
+p {
+  line-height: 1.5;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 400;
+  font-stretch: 150%;
+}
+
+.item__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.page-content > *:nth-child(odd) {
+  background-color: var(--white);
+}
+
+.page-content > *:nth-child(even) {
+  background-color: var(--light-gray);
+}
+
+.text-section {
+  padding-inline: 3rem;
+  display: flow-root;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vitem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.vitem__image {
+  height: 100vh;
+  aspect-ratio: 3/4;
+}
+
+.vitem__text {
+  margin-inline: 20%;
+}
+
+.pop__container {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.pop__image {
+  padding: 3em;
+  box-sizing: border-box;
+  max-width: 80%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.hsection {
+  padding-block: 3rem;
   display: flex;
+  justify-content: space-between;
+  overflow-x: auto;
+  column-gap: 7em;
+}
+
+.hitem {
+  display: flex;
+  min-width: 40%;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hitem__image {
+  aspect-ratio: 22/9;
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 7%;
 }
