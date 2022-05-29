@@ -43,12 +43,23 @@ p {
   justify-content: space-between;
 }
 
+.vsection__images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .vitem {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 1rem;
   justify-items: center;
   align-items: center;
+}
+
+.full-height {
+  height: 100vh;
 }
 
 .vitem__image {
@@ -74,7 +85,7 @@ p {
   padding-block: 3rem;
   display: flex;
   justify-content: space-between;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   column-gap: 7em;
 }
 
