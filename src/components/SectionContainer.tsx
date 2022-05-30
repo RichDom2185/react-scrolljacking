@@ -2,11 +2,11 @@ import React from "react";
 import { Children, ReactElement } from "react";
 import { useEffect, useState } from "react";
 
-type Props = {
+type VSectionProps = {
   children: React.ReactNode;
 };
 
-export const VSection: React.FC<Props> = (props) => {
+export const VSection: React.FC<VSectionProps> = (props) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   useEffect(() => {
@@ -106,7 +106,12 @@ export const VSection: React.FC<Props> = (props) => {
   );
 };
 
-export const HSection: React.FC<Props> = (props) => {
+type HSectionProps = {
+  leading?: React.ReactNode;
+  children: React.ReactNode;
+};
+
+export const HSection: React.FC<HSectionProps> = ({ leading, children }) => {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
@@ -124,6 +129,7 @@ export const HSection: React.FC<Props> = (props) => {
 
   const scroller = document.getElementById("hsection__scroll");
   const scrollerWidth = scroller ? scroller.scrollWidth : 0;
+  const scrollerHeight = scroller ? scroller.getBoundingClientRect().height : 0;
 
   const getWindowPosition = () => {
     const container = document.getElementById("hsection__container");
@@ -156,6 +162,14 @@ export const HSection: React.FC<Props> = (props) => {
         }}
       >
         <div
+          style={{
+            height: `calc(100vh - ${scrollerHeight}px)`,
+            display: "flow-root",
+          }}
+        >
+          {leading}
+        </div>
+        <div
           id="hsection__scroll"
           className="hsection"
           style={{
@@ -165,7 +179,7 @@ export const HSection: React.FC<Props> = (props) => {
             }%)`,
           }}
         >
-          {props.children}
+          {children}
         </div>
       </div>
     </div>

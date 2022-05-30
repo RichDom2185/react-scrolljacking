@@ -13,10 +13,20 @@ p {
   line-height: 1.5;
 }
 
+.md {
+  max-width: 800px;
+}
+
 .title {
   font-size: 3rem;
   font-weight: 400;
   font-stretch: 150%;
+}
+
+.headline__container {
+  text-align: center;
+  padding-block: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .item__title {

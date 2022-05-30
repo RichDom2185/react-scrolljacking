@@ -4,6 +4,18 @@ import { HSection, VSection } from "./components/SectionContainer";
 import PopInImage from "./components/PopInImage";
 
 function App() {
+  const ourTeam = (
+    <div className="flex-container" style={{ justifyContent: "center" }}>
+      <div className="headline__container md">
+        <h1 className="title">Meet our team</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione omnis
+          minus labore officia inventore exercitationem a ullam quaerat aut et.
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <div className="page-content">
       <div className="text-section">
@@ -76,6 +88,7 @@ function App() {
           </p>
         </div>
         <PopInImage
+          id="pop-in-image"
           from="right"
           src={
             "https://doodleipsum.com/700/abstract?bg=63C8D9&i=9e88b00d558613df9b31e2d3782244c3"
@@ -88,7 +101,7 @@ function App() {
         </h2>
         <p>The following is a horizontal section:</p>
       </div>
-      <HSection>
+      <HSection leading={ourTeam}>
         <HItem
           id="hitem-1"
           image={
