@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Children, ReactElement } from "react";
 import { useEffect, useState } from "react";
+import { ItemProps } from "./SectionItem";
 
 type VSectionProps = {
-  children: React.ReactNode;
+  children: ReactElement<ItemProps> | ReactElement<ItemProps>[];
 };
 
-export const VSection: React.FC<VSectionProps> = (props) => {
+export const VSection: React.FC<VSectionProps> = ({ children }) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
   useEffect(() => {
@@ -16,20 +17,15 @@ export const VSection: React.FC<VSectionProps> = (props) => {
     };
   }, []);
 
-  const handleScroll = (e: Event) => {
-    // console.log(e);
-    // console.log(getChildPosition(1), getChildPosition(2), getChildPosition(3));
-    // console.log(`${getCurrentActiveChild()} is active`);
-    setActiveIndex(getCurrentActiveChild());
-  };
+  const handleScroll = () => setActiveIndex(getCurrentActiveChild());
 
   const getCurrentActiveChild = () => {
-    for (let i = Children.count(props.children); i > 0; i--) {
+    for (let i = Children.count(children); i > 0; i--) {
       if (getChildPosition(i) < window.innerHeight) {
         return i;
       }
     }
-    return 1;
+    return 1; // initial value
   };
 
   const getChildPosition = (index: number) => {
@@ -39,57 +35,29 @@ export const VSection: React.FC<VSectionProps> = (props) => {
 
   return (
     <div className="vitem bg-gray" style={{ alignItems: "start" }}>
-      {/* {Children.map(props.children, (child, index) => {
-          const imageSrc = (child as ReactElement).props.image;
-          return (
-            index + 1 === activeIndex &&
-            imageSrc && (
-              <div style={{ position: "sticky", top: 0, alignSelf: "start" }}>
-                <img className="vitem__image" src={imageSrc} alt="Decoration" />
-              </div>
-            )
-          );
-        })} */}
-
       <div
         style={{
           position: "sticky",
           top: 0,
-          alignSelf: "start",
-          overflow: "hidden",
+          overflowY: "hidden",
           height: "100vh",
         }}
-        className="vsection__images"
       >
         <div
           className="vsection__images"
           style={{
             transition: "transform 0.3s ease-in-out",
             transform: `translateY(${
-              (-(activeIndex - 1) / Children.count(props.children)) * 100
+              (-(activeIndex - 1) / Children.count(children)) * 100
             }%)`,
           }}
         >
-          {Children.map(props.children, (child, index) => {
-            const imageSrc = (child as ReactElement).props.image;
-            return (
-              imageSrc && (
-                <img className="vitem__image" src={imageSrc} alt="Decoration" />
-              )
-            );
-          })}
+          {Children.map(children, (child) => (
+            <img className="vitem__image" src={child.props.image!} alt="" />
+          ))}
         </div>
       </div>
-
-      {/* {Children.map(props.children, (child, index) => {
-          const childContents = (child as ReactElement).props.children;
-          return (
-            index + 1 === activeIndex && (
-              <div className="vitem__text">{childContents}</div>
-            )
-          );
-        })} */}
-      <div>{props.children}</div>
+      <div>{children}</div>
     </div>
   );
 };
@@ -109,58 +77,48 @@ export const HSection: React.FC<HSectionProps> = ({ leading, children }) => {
     };
   }, []);
 
-  const handleScroll = (e: Event) => {
-    // console.log(getWindowPosition());
-    // console.log(scrollerWidth);
-    setOffset(getWindowPosition());
-  };
+  const handleScroll = () => setOffset(getOffset());
 
-  const scroller = document.getElementById("hsection__scroll");
+  const scroller = document.getElementById("hsection__scroller");
   const scrollerWidth = scroller ? scroller.scrollWidth : 0;
   const scrollerHeight = scroller ? scroller.getBoundingClientRect().height : 0;
 
-  const getWindowPosition = () => {
+  const getOffset = useCallback(() => {
     const container = document.getElementById("hsection__container");
-    const boundingBox = container?.getBoundingClientRect();
-    if (boundingBox) {
-      return -boundingBox.top;
-    }
-    return 0;
-  };
+    const boundingBox = container!.getBoundingClientRect();
 
-  const max = (a: number, b: number) => (a > b ? a : b);
+    const scrollPosition = Math.max(-boundingBox.top, 0);
+    return scrollPosition;
+  }, []);
 
   return (
     <div
       id="hsection__container"
       style={{
-        height: scrollerWidth + window.innerHeight,
-        display: "grid",
+        height: scrollerWidth + window.innerHeight, // for 1:1 ratio
       }}
     >
-      <div
+      <div // the section
         style={{
           position: "sticky",
           overflowX: "hidden",
           top: 0,
-          alignSelf: "start",
         }}
       >
-        <div
+        <div // force height to fill remaining space
           style={{
             height: `calc(100vh - ${scrollerHeight}px)`,
-            display: "flow-root",
+            display: "flow-root", // to prevent issues with collapsed margins
           }}
         >
           {leading}
         </div>
-        <div
-          id="hsection__scroll"
-          className="hsection"
+        <div // the scroller
+          id="hsection__scroller"
           style={{
             transform: `translateX(30%) translateX(${
-              // transform: `translateX(${
-              max(-max(offset, 0) / scrollerWidth, -1) * 100
+              // negative direction as we move right to left
+              -Math.min(offset / scrollerWidth, 1) * 100
             }%)`,
           }}
         >

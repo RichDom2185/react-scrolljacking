@@ -6,7 +6,7 @@ type Props = {
 };
 
 const PopInImage: React.FC<Props> = ({ id, src }) => {
-  const [percentage, setPercentage] = useState(0);
+  const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -15,22 +15,18 @@ const PopInImage: React.FC<Props> = ({ id, src }) => {
     };
   }, []);
 
-  const handleScroll = () => {
-    setPercentage(getPercentage());
-  };
+  const handleScroll = () => setOpacity(getPercentage());
 
   const getPercentage = () => {
-    const img = document.getElementById(id);
-    const boundingBox = img!.getBoundingClientRect();
-    const target = boundingBox.top + (3 * boundingBox.height) / 4;
-    const transitionstart = boundingBox.top + (1 * boundingBox.height) / 4;
-    const transitionHeight = target - transitionstart;
-    return (
-      Math.min(
-        -Math.min(transitionstart - window.innerHeight, 0) / transitionHeight,
-        1
-      ) * 100
-    );
+    const boundingBox = document.getElementById(id)!.getBoundingClientRect();
+
+    const start = boundingBox.top + boundingBox.height * (1 / 4);
+    const end = boundingBox.top + boundingBox.height * (3 / 4);
+    const transitionHeight = end - start;
+
+    const startFromBottom = window.innerHeight - start;
+
+    return Math.min(Math.max(startFromBottom, 0) / transitionHeight, 1) * 100;
   };
 
   return (
@@ -41,7 +37,7 @@ const PopInImage: React.FC<Props> = ({ id, src }) => {
         src={src}
         alt="Decoration"
         style={{
-          opacity: `${percentage}%`,
+          opacity: `${opacity}%`,
         }}
       />
     </div>
