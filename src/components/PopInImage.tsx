@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Props = {
   id: string;
@@ -8,16 +8,7 @@ type Props = {
 const PopInImage: React.FC<Props> = ({ id, src }) => {
   const [opacity, setOpacity] = useState(0);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleScroll = () => setOpacity(getPercentage());
-
-  const getPercentage = () => {
+  const getPercentage = useCallback(() => {
     const boundingBox = document.getElementById(id)!.getBoundingClientRect();
 
     const start = boundingBox.top + boundingBox.height * (1 / 4);
@@ -27,7 +18,13 @@ const PopInImage: React.FC<Props> = ({ id, src }) => {
     const startFromBottom = window.innerHeight - start;
 
     return Math.min(Math.max(startFromBottom, 0) / transitionHeight, 1) * 100;
-  };
+  }, [id]);
+
+  useEffect(() => {
+    const handleScroll = () => setOpacity(getPercentage());
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [getPercentage]);
 
   return (
     <div className="pop__container">

@@ -10,23 +10,20 @@ type VSectionProps = {
 export const VSection: React.FC<VSectionProps> = ({ children }) => {
   const [activeIndex, setActiveIndex] = useState(1);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleScroll = () => setActiveIndex(getCurrentActiveChild());
-
-  const getCurrentActiveChild = () => {
+  const getCurrentActiveChild = useCallback(() => {
     for (let i = Children.count(children); i > 0; i--) {
       if (getChildPosition(i) < window.innerHeight) {
         return i;
       }
     }
     return 1; // initial value
-  };
+  }, [children]);
+
+  useEffect(() => {
+    const handleScroll = () => setActiveIndex(getCurrentActiveChild());
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [getCurrentActiveChild]);
 
   const getChildPosition = (index: number) => {
     const child = document.getElementById(`vitem-${index}`);
@@ -69,19 +66,10 @@ type HSectionProps = {
 
 export const HSection: React.FC<HSectionProps> = ({ leading, children }) => {
   const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleScroll = () => setOffset(getOffset());
-
-  const scroller = document.getElementById("hsection__scroller");
-  const scrollerWidth = scroller ? scroller.scrollWidth : 0;
-  const scrollerHeight = scroller ? scroller.getBoundingClientRect().height : 0;
+  const [scrollerSize, setScrollerSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   const getOffset = useCallback(() => {
     const container = document.getElementById("hsection__container");
@@ -91,11 +79,26 @@ export const HSection: React.FC<HSectionProps> = ({ leading, children }) => {
     return scrollPosition;
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => setOffset(getOffset());
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [getOffset]);
+
+  useEffect(() => {
+    const scroller = document.getElementById("hsection__scroller")!;
+    setScrollerSize({
+      width: scroller.scrollWidth,
+      height: scroller.getBoundingClientRect().height,
+    });
+  }, []);
+
   return (
     <div
       id="hsection__container"
       style={{
-        height: scrollerWidth + window.innerHeight, // for 1:1 ratio
+        height: scrollerSize.width + window.innerHeight, // for 1:1 ratio
       }}
     >
       <div // the section
@@ -107,7 +110,7 @@ export const HSection: React.FC<HSectionProps> = ({ leading, children }) => {
       >
         <div // force height to fill remaining space
           style={{
-            height: `calc(100vh - ${scrollerHeight}px)`,
+            height: `calc(100vh - ${scrollerSize.height}px)`,
             display: "flow-root", // to prevent issues with collapsed margins
           }}
         >
@@ -118,7 +121,7 @@ export const HSection: React.FC<HSectionProps> = ({ leading, children }) => {
           style={{
             transform: `translateX(30%) translateX(${
               // negative direction as we move right to left
-              -Math.min(offset / scrollerWidth, 1) * 100
+              -Math.min(offset / scrollerSize.width, 1) * 100
             }%)`,
           }}
         >
