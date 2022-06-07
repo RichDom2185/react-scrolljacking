@@ -70,7 +70,7 @@ function App() {
         </VItem>
       </VSection>
       <div className="text-section flex-container">
-        <div className="left md">
+        <div className="left sm">
           <h2 className="heading">Hey there! 😀</h2>
           <p>Here's a list of some random stuff.</p>
           <ul>
@@ -125,7 +125,7 @@ function App() {
             consequuntur veniam aut nihil magni itaque quisquam obcaecati odit,
             ea, suscipit quia cum ut earum repellendus assumenda sint ipsa ullam
             alias eos id. Earum dicta quam corrupti deleniti saepe, ea quidem!
-            Blanditiis fugit fugiat placeat possimus omnis corrupti.
+            CSS isn't using best practices but unfortunately no time.
           </p>
           <p>Illustrations by Doodle Ipsum. Website created using React.js.</p>
           <p style={{ fontWeight: "bold" }}>Richard Dominick © 2022</p>
