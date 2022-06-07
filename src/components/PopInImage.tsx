@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 
 type Props = {
   id: string;
-  from: "left" | "right";
   src: string;
 };
 
-const PopInImage: React.FC<Props> = ({ id, from, src }) => {
+const PopInImage: React.FC<Props> = ({ id, src }) => {
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const PopInImage: React.FC<Props> = ({ id, from, src }) => {
     };
   }, []);
 
-  const handleScroll = (e: Event) => {
+  const handleScroll = () => {
     setPercentage(getPercentage());
   };
 

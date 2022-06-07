@@ -2,11 +2,20 @@ import "./App.css";
 import { HItem, VItem } from "./components/SectionItem";
 import { HSection, VSection } from "./components/SectionContainer";
 import PopInImage from "./components/PopInImage";
+import {
+  HIMAGE_1,
+  HIMAGE_2,
+  HIMAGE_3,
+  POP_IN_IMAGE,
+  VIMAGE_1,
+  VIMAGE_2,
+  VIMAGE_3,
+} from "./Constants";
 
 function App() {
   const ourTeam = (
     <div className="flex-container" style={{ justifyContent: "center" }}>
-      <div className="headline__container md">
+      <div className="team-intro md">
         <h1 className="title">Meet our team</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione omnis
@@ -18,25 +27,22 @@ function App() {
 
   return (
     <div className="page-content">
-      <div className="text-section">
+      <div className="text-section intro-section lg">
         <h1 className="title">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit.
         </h1>
         <p>
           This website serves as a demo of scroll-jacking in React. I couldn't
           find a guide for it, so here it is for everyone. You can check out the
-          GitHub repository for the template code. Enjoy!
+          GitHub repository for the template code. Enjoy! The next few words are
+          just filler text: Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Nostrum iure excepturi vitae ipsa maxime est perspiciatis iusto
+          sint! Consequuntur, neque!
         </p>
-        <p>The following is a vertical section:</p>
       </div>
       <VSection>
-        <VItem
-          id="vitem-1"
-          image={
-            "https://doodleipsum.com/700x933/hand-drawn?bg=D98D63&i=5efe8d596efd1dd7c55507ac9aeaef95"
-          }
-        >
-          <h2 className="item__title">Lorem ipsum dolor sit.</h2>
+        <VItem id="vitem-1" image={VIMAGE_1}>
+          <h2 className="heading">Lorem ipsum dolor sit.</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             quas itaque dolores, iure ad dicta asperiores atque voluptates
@@ -44,13 +50,8 @@ function App() {
             veritatis ad architecto adipisci.
           </p>
         </VItem>
-        <VItem
-          id="vitem-2"
-          image={
-            "https://doodleipsum.com/700x933/hand-drawn?bg=FF3C3C&i=dbc0f7a3fdb7a29bd3c3c91d2143f5bc"
-          }
-        >
-          <h2 className="item__title">Lorem ipsum dolor sit.</h2>
+        <VItem id="vitem-2" image={VIMAGE_2}>
+          <h2 className="heading">Lorem ipsum dolor sit.</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             quas itaque dolores, iure ad dicta asperiores atque voluptates
@@ -58,13 +59,8 @@ function App() {
             veritatis ad architecto adipisci.
           </p>
         </VItem>
-        <VItem
-          id="vitem-3"
-          image={
-            "https://doodleipsum.com/700x933/hand-drawn?bg=c863d9&i=05ff6eed5dc7a75776423f118d7be810"
-          }
-        >
-          <h2 className="item__title">Lorem ipsum dolor sit.</h2>
+        <VItem id="vitem-3" image={VIMAGE_3}>
+          <h2 className="heading">Lorem ipsum dolor sit.</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             quas itaque dolores, iure ad dicta asperiores atque voluptates
@@ -74,41 +70,26 @@ function App() {
         </VItem>
       </VSection>
       <div className="text-section flex-container">
-        <div className="left">
-          <h2 className="item__title">Hey there! 😀</h2>
+        <div className="left md">
+          <h2 className="heading">Hey there! 😀</h2>
           <p>Here's a list of some random stuff.</p>
           <ul>
             <li>List Item 1</li>
             <li>List Item 2</li>
             <li>List Item 3</li>
           </ul>
+          <p>You should see the image to the right slowly fade into view 👀.</p>
           <p>
-            You should see the image to the right slowly fade and slide into
-            view 👀.
+            More specifically, it should start fading in about a quarter of the
+            way through the image and stop about three quarters through the
+            image as you scroll down.
           </p>
         </div>
-        <PopInImage
-          id="pop-in-image"
-          from="right"
-          src={
-            "https://doodleipsum.com/700/abstract?bg=63C8D9&i=9e88b00d558613df9b31e2d3782244c3"
-          }
-        />
-      </div>
-      <div className="text-section">
-        <h2 className="item__title">
-          The quick brown fox jumps over a lazy dog.
-        </h2>
-        <p>The following is a horizontal section:</p>
+        <PopInImage id="pop-in-image" src={POP_IN_IMAGE} />
       </div>
       <HSection leading={ourTeam}>
-        <HItem
-          id="hitem-1"
-          image={
-            "https://doodleipsum.com/700/hand-drawn?bg=D96363&i=eb703e5ed11f81baa710587380587f25"
-          }
-        >
-          <h2 className="item__title">Lorem ipsum dolor sit.</h2>
+        <HItem id="hitem-1" image={HIMAGE_1}>
+          <h2 className="heading">Lorem ipsum dolor sit.</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             quas itaque dolores, iure ad dicta asperiores atque voluptates
@@ -116,13 +97,8 @@ function App() {
             veritatis ad architecto adipisci.
           </p>
         </HItem>
-        <HItem
-          id="hitem-2"
-          image={
-            "https://doodleipsum.com/700/hand-drawn?bg=7463d9&i=278b34590ef6c60bd571dcd8b27e27ea"
-          }
-        >
-          <h2 className="item__title">Lorem ipsum dolor sit.</h2>
+        <HItem id="hitem-2" image={HIMAGE_2}>
+          <h2 className="heading">Lorem ipsum dolor sit.</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             quas itaque dolores, iure ad dicta asperiores atque voluptates
@@ -130,13 +106,8 @@ function App() {
             veritatis ad architecto adipisci.
           </p>
         </HItem>
-        <HItem
-          id="hitem-3"
-          image={
-            "https://doodleipsum.com/700/hand-drawn?bg=EB765D&i=f1e89bf777357d4ac29c8ecbde156bb1"
-          }
-        >
-          <h2 className="item__title">Lorem ipsum dolor sit.</h2>
+        <HItem id="hitem-3" image={HIMAGE_3}>
+          <h2 className="heading">Lorem ipsum dolor sit.</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
             quas itaque dolores, iure ad dicta asperiores atque voluptates
@@ -145,10 +116,20 @@ function App() {
           </p>
         </HItem>
       </HSection>
-      <div className="text-section">
-        <h2 className="item__title">The End.</h2>
-        <p>Illustrations by Doodle Ipsum. Website created using React.js.</p>
-        <p>Richard Dominick © 2022</p>
+      <div className="text-section bg-gray">
+        <div className="md">
+          <h2 className="heading">The End</h2>
+          <p>
+            This is just some more text to fill up space. Lorem ipsum dolor sit
+            amet consectetur, adipisicing elit. Quod placeat illum distinctio
+            consequuntur veniam aut nihil magni itaque quisquam obcaecati odit,
+            ea, suscipit quia cum ut earum repellendus assumenda sint ipsa ullam
+            alias eos id. Earum dicta quam corrupti deleniti saepe, ea quidem!
+            Blanditiis fugit fugiat placeat possimus omnis corrupti.
+          </p>
+          <p>Illustrations by Doodle Ipsum. Website created using React.js.</p>
+          <p style={{ fontWeight: "bold" }}>Richard Dominick © 2022</p>
+        </div>
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ export const VSection: React.FC<VSectionProps> = (props) => {
 
   const handleScroll = (e: Event) => {
     // console.log(e);
-    // console.log(getWindowPosition());
     // console.log(getChildPosition(1), getChildPosition(2), getChildPosition(3));
     // console.log(`${getCurrentActiveChild()} is active`);
     setActiveIndex(getCurrentActiveChild());
@@ -38,14 +37,9 @@ export const VSection: React.FC<VSectionProps> = (props) => {
     return child ? child.getBoundingClientRect().top : 0;
   };
 
-  // const getWindowPosition = () => {
-  //   return window.scrollY || document.documentElement.scrollTop;
-  // };
-
   return (
-    <>
-      <div className="vitem" style={{ alignItems: "start" }}>
-        {/* {Children.map(props.children, (child, index) => {
+    <div className="vitem bg-gray" style={{ alignItems: "start" }}>
+      {/* {Children.map(props.children, (child, index) => {
           const imageSrc = (child as ReactElement).props.image;
           return (
             index + 1 === activeIndex &&
@@ -57,42 +51,37 @@ export const VSection: React.FC<VSectionProps> = (props) => {
           );
         })} */}
 
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          alignSelf: "start",
+          overflow: "hidden",
+          height: "100vh",
+        }}
+        className="vsection__images"
+      >
         <div
-          style={{
-            position: "sticky",
-            top: 0,
-            alignSelf: "start",
-            overflow: "hidden",
-            height: "100vh",
-            // objectPosition: "top",
-          }}
           className="vsection__images"
+          style={{
+            transition: "transform 0.3s ease-in-out",
+            transform: `translateY(${
+              (-(activeIndex - 1) / Children.count(props.children)) * 100
+            }%)`,
+          }}
         >
-          <div
-            className="vsection__images"
-            style={{
-              transition: "transform 0.3s ease-in-out",
-              transform: `translateY(${
-                (-(activeIndex - 1) / Children.count(props.children)) * 100
-              }%)`,
-            }}
-          >
-            {Children.map(props.children, (child, index) => {
-              const imageSrc = (child as ReactElement).props.image;
-              return (
-                imageSrc && (
-                  <img
-                    className="vitem__image"
-                    src={imageSrc}
-                    alt="Decoration"
-                  />
-                )
-              );
-            })}
-          </div>
+          {Children.map(props.children, (child, index) => {
+            const imageSrc = (child as ReactElement).props.image;
+            return (
+              imageSrc && (
+                <img className="vitem__image" src={imageSrc} alt="Decoration" />
+              )
+            );
+          })}
         </div>
+      </div>
 
-        {/* {Children.map(props.children, (child, index) => {
+      {/* {Children.map(props.children, (child, index) => {
           const childContents = (child as ReactElement).props.children;
           return (
             index + 1 === activeIndex && (
@@ -100,9 +89,8 @@ export const VSection: React.FC<VSectionProps> = (props) => {
             )
           );
         })} */}
-        <div>{props.children}</div>
-      </div>
-    </>
+      <div>{props.children}</div>
+    </div>
   );
 };
 
@@ -135,9 +123,6 @@ export const HSection: React.FC<HSectionProps> = ({ leading, children }) => {
     const container = document.getElementById("hsection__container");
     const boundingBox = container?.getBoundingClientRect();
     if (boundingBox) {
-      // return boundingBox.bottom < window.innerHeight
-      //   ? -scrollerWidth
-      //   : boundingBox.top;
       return -boundingBox.top;
     }
     return 0;
