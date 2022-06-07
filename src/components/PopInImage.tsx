@@ -1,12 +1,12 @@
 type Props = {
-  from: "left" | "right";
+  id: string;
   src: string;
 };
 
-const PopInImage: React.FC<Props> = (props) => {
+const PopInImage: React.FC<Props> = ({ id, src }) => {
   return (
     <div className="pop__container">
-      <img className="pop__image" src={props.src} alt="Decoration" />
+      <img id={id} className="pop__image" src={src} alt="" />
     </div>
   );
 };

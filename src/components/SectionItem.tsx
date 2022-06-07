@@ -1,30 +1,33 @@
-type Props = {
+export type ItemProps = {
+  id: string;
   children?: React.ReactNode;
   image?: string;
 };
 
-export const VItem: React.FC<Props> = (props) => {
+export const VItem: React.FC<ItemProps> = ({ id, children, image }) => {
   return (
     <div className="vitem">
-      {props.image && (
+      {image && (
         <div>
-          <img className="vitem__image" src={props.image} alt="Decoration" />
+          <img className="vitem__image" src={image} alt="" />
         </div>
       )}
-      <div className="vitem__text">{props.children}</div>
+      <div id={id} className="vitem__text">
+        {children}
+      </div>
     </div>
   );
 };
 
-export const HItem: React.FC<Props> = (props) => {
+export const HItem: React.FC<ItemProps> = ({ id, children, image }) => {
   return (
     <div className="hitem">
-      {props.image && (
+      {image && (
         <div>
-          <img className="hitem__image" src={props.image} alt="Decoration" />
+          <img className="hitem__image" src={image} alt="" />
         </div>
       )}
-      <div className="hitem__text">{props.children}</div>
+      <div id={id}>{children}</div>
     </div>
   );
 };
