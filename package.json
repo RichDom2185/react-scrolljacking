@@ -1,5 +1,5 @@
 {
-  "name": "scroll-jacking",
+  "name": "react-scrolljacking",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
