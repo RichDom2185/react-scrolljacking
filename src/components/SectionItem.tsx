@@ -4,14 +4,9 @@ export type ItemProps = {
   image?: string;
 };
 
-export const VItem: React.FC<ItemProps> = ({ id, children, image }) => {
+export const VItem: React.FC<ItemProps> = ({ id, children }) => {
   return (
     <div className="vitem full-height">
-      {/* {props.image && (
-        <div>
-          <img className="vitem__image" src={image} alt="" />
-        </div>
-      )} */}
       <div id={id} className="vitem__text">
         {children}
       </div>

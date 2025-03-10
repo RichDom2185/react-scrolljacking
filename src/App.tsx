@@ -32,12 +32,12 @@ function App() {
           Lorem, ipsum dolor sit amet consectetur adipisicing elit.
         </h1>
         <p>
-          This website serves as a demo of scroll-jacking in React. I couldn't
-          find a guide for it, so here it is for everyone. You can check out the
-          GitHub repository for the template code. Enjoy! The next few words are
-          just filler text: Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Nostrum iure excepturi vitae ipsa maxime est perspiciatis iusto
-          sint! Consequuntur, neque!
+          This website serves as a demo of scroll-jacking in React. I
+          couldn&rsquo;t find a guide for it, so here it is for everyone. You
+          can check out the GitHub repository for the template code. Enjoy! The
+          next few words are just filler text: Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Nostrum iure excepturi vitae ipsa maxime
+          est perspiciatis iusto sint! Consequuntur, neque!
         </p>
       </div>
       <VSection>
@@ -72,7 +72,7 @@ function App() {
       <div className="text-section flex-container">
         <div className="left sm">
           <h2 className="heading">Hey there! 😀</h2>
-          <p>Here's a list of some random stuff.</p>
+          <p>Here&rsquo;s a list of some random stuff.</p>
           <ul>
             <li>List Item 1</li>
             <li>List Item 2</li>
@@ -125,10 +125,10 @@ function App() {
             consequuntur veniam aut nihil magni itaque quisquam obcaecati odit,
             ea, suscipit quia cum ut earum repellendus assumenda sint ipsa ullam
             alias eos id. Earum dicta quam corrupti deleniti saepe, ea quidem!
-            CSS isn't using best practices but unfortunately no time.
+            CSS isn&rsquo;t using best practices but unfortunately no time.
           </p>
           <p>Illustrations by Doodle Ipsum. Website created using React.js.</p>
-          <p style={{ fontWeight: "bold" }}>Richard Dominick © 2022</p>
+          <p style={{ fontWeight: "bold" }}>Richard Dominick © 2025</p>
         </div>
       </div>
     </div>

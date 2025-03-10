@@ -54,7 +54,7 @@ export const VSection: React.FC<VSectionProps> = ({ children }) => {
           }}
         >
           {Children.map(children, (child) => (
-            <img className="vitem__image" src={child.props.image!} alt="" />
+            <img className="vitem__image" src={child.props.image} alt="" />
           ))}
         </div>
       </div>
