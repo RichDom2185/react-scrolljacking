@@ -13,6 +13,18 @@ import {
 } from "./Constants";
 
 function App() {
+  const ourTeam = (
+    <div className="flex-container" style={{ justifyContent: "center" }}>
+      <div className="team-intro md">
+        <h1 className="title">Meet our team</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione omnis
+          minus labore officia inventore exercitationem a ullam quaerat aut et.
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <div className="page-content">
       <div className="text-section intro-section lg">
@@ -75,17 +87,7 @@ function App() {
         </div>
         <PopInImage id="pop-in-image" src={POP_IN_IMAGE} />
       </div>
-      <div className="flex-container" style={{ justifyContent: "center" }}>
-        <div className="team-intro md">
-          <h1 className="title">Meet our team</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-            omnis minus labore officia inventore exercitationem a ullam quaerat
-            aut et.
-          </p>
-        </div>
-      </div>
-      <HSection>
+      <HSection leading={ourTeam}>
         <HItem id="hitem-1" image={HIMAGE_1}>
           <h2 className="heading">Lorem ipsum dolor sit.</h2>
           <p>

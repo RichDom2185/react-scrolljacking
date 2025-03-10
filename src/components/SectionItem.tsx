@@ -6,12 +6,12 @@ export type ItemProps = {
 
 export const VItem: React.FC<ItemProps> = ({ id, children, image }) => {
   return (
-    <div className="vitem">
-      {image && (
+    <div className="vitem full-height">
+      {/* {props.image && (
         <div>
           <img className="vitem__image" src={image} alt="" />
         </div>
-      )}
+      )} */}
       <div id={id} className="vitem__text">
         {children}
       </div>
