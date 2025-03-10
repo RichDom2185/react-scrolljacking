@@ -1,11 +1,9 @@
 {
   "name": "react-scrolljacking",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^6.0.0",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
@@ -13,33 +11,17 @@
     "web-vitals": "^3.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4"
+    "@types/react-dom": "^18.0.4",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react": "^7.37.4",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^6.2.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "dev": "vite",
+    "build": "tsc && vite build"
   }
 }
