@@ -1,6 +1,10 @@
-import React, { useCallback } from "react";
-import { Children, ReactElement } from "react";
-import { useEffect, useState } from "react";
+import React, {
+  Children,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { ItemProps } from "./SectionItem";
 
 type VSectionProps = {

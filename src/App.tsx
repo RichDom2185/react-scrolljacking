@@ -1,7 +1,7 @@
 import "./App.css";
-import { HItem, VItem } from "./components/SectionItem";
-import { HSection, VSection } from "./components/SectionContainer";
 import PopInImage from "./components/PopInImage";
+import { HSection, VSection } from "./components/SectionContainer";
+import { HItem, VItem } from "./components/SectionItem";
 import {
   HIMAGE_1,
   HIMAGE_2,
