@@ -17,10 +17,12 @@ export default tseslint.config(
       },
     },
   },
+  { settings: { react: { version: "detect" } } },
   react.configs.flat.recommended,
   {
-    files: ["*.tsx"],
+    files: ["**/*.tsx"],
     rules: {
+      "react/prop-types": "off",
       // With the new JSX Transform in React 17,
       // we don't need to import React in every file.
       "react/react-in-jsx-scope": "off",
